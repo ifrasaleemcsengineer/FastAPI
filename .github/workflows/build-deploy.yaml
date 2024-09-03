@@ -13,6 +13,5 @@ jobs:
     steps:
       - name: Pulling git repo
         uses: actions/checkout@v2
-      
       - name: Say hit to Ifra
-      - run: echo "Hey there, I'm Ifra here!"
+        run: echo "Hey there, I'm Ifra here!"
