@@ -3,7 +3,7 @@ name: Build and Deploy Code
 on: [push, pull_request]
 
 jobs:
-  job1:
+  build:
     environment:
       name: testing
     env:
@@ -14,8 +14,8 @@ jobs:
       DATABASE_USERNAME: ${{secrets.DATABASE_USERNAME}}
       SECRET_KEY: ${{secrets.SECRET_KEY}}
       ALGORITHM: ${{secrets.ALGORITHM}}
-      ACCESS_TOKEN_EXPIRATION_MINUTES: ${{secrets.ACCESS_TOKEN_EXPIRATION_MINUTES}}
-    
+      ACCESS_TOKEN_EXPIRE_MINUTES: ${{secrets.ACCESS_TOKEN_EXPIRE_MINUTES}}
+
     services:
       postgres:
         image: postgres
@@ -27,8 +27,9 @@ jobs:
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
-          --health-timeout 3s
+          --health-timeout 5s
           --health-retries 5
+
 
     runs-on: ubuntu-latest
     steps:
