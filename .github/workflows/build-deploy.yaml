@@ -20,7 +20,7 @@ jobs:
       postgres:
         image: postgres
         env:
-          POSTGRES_PASSWORD: Ifra12
+          POSTGRES_PASSWORD: ${{secrets.DATABASE_PASSWORD}}
           POSTGRES_DB: ${{secrets.DATABASE_NAME}}_test
         ports:
           - 5432:5432
@@ -30,6 +30,8 @@ jobs:
           --health-timeout 5s
           --health-retries 5
 
+          - name: Debug environment variables
+            run: env | grep DATABASE
 
     runs-on: ubuntu-latest
     steps:
